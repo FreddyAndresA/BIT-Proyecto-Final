@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+
+<!-- ------------------------------------------------------------------------------------------------- BARRA DE BUSQUEDA -->
+
+<div class="container my-5 py-3">
+    <div class="w-50 mx-auto">
+        <div class="d-flex my-5">
+            <input type="text" class="form-control form-control-lg" id="registerName" aria-describedby="emailHelp" formControlName="nombre"#nombre placeholder="Busca tu pelicula favorita y agregala a tu listado...">
+            <button class="btn themeBoton" type="button" (click)="buscando()">Buscar</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ------------------------------------------------------------------------------------------------- TITULO Y RENDERIZADO DE LA BUSQUEDA -->
+
+<ng-template [ngIf]="Onemovie.length > 0" [ngIfElse]="loading">
+    <div class="row">
+        <div class="col-4 mx-auto" *ngFor="let movie of Onemovie">
+            <div class="card">
+                <img [src]="[imageUrl]+movie.poster" class="card-img-top imagen" alt="logo">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold titulo">{{ movie.original_title }}{{ movie.original_name }}</h5>
+                    <p class="card-text fw-light">{{ movie.overview }}</p>
+                    <button class="mt-4 btn themeBoton" (click)="agregando(movie)">Agregar a mi lista !</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<!-- ------------------------------------------------------------------------------------------------- TITULO Y RENDERIZADO DE LAS PELICULAS MAS POPULARES -->
+<ng-template #loading>
+    <div class="container">
+        <h1 class="mt-5 text-center display-5 fw-lighter titulo">Y las películas y series mas populares<br>esta semana son...</h1>
+        <div class="row row-cols-2 row-cols-lg-3 g-5 my-5">
+            <div class="col" *ngFor="let movie of movies">
+                <div class="card">
+                    <img [src]="[imageUrl]+movie.poster_path" class="card-img-top imagen" alt="poster">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold titulo">{{ movie.original_title }}{{ movie.original_name }}</h5>
+                        <p class="card-text fw-light">{{ movie.overview }}</p>
+                        <button class="mt-4 btn themeBoton" (click)="agregando(movie.id)">Agregar a mi lista !</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

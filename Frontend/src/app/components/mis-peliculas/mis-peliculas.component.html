@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<div class="container my-5">
+    <ng-template [ngIf]="carga.length" [ngIfElse]="loading">
+        <div class="container">
+            <h1 class="my-5 text-center display-5 fw-lighter titulo">Y las películas agregadas a<br>tu listado son:</h1>
+            <div class="row row-cols-2 row-cols-lg-3 g-5 my-5">
+                <div class="col mx-auto" *ngFor="let movie of carga">
+                    <div class="card">
+                        <div class="card-body">
+                            <img [src]="[imageUrl]+movie.poster" class="card-img-top imagen" alt="poster">
+                            <h5 class="mt-4 card-title fw-bold titulo">{{ movie.title}}</h5>
+                            <p class="card-text fw-light">{{ movie.overview }}</p>
+                            <button class="btn themeBotonOutlined" type="button"
+                                (click)="eliminando(movie.id)">Eliminar</button>
+                            <a class="ms-3" [href]="[wht]+movie.title"><button class="btn themeBoton" type="button"><i class="fa-brands fa-whatsapp"></i></button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+
+    <ng-template #loading>
+        <h1 class="my-5 text-center display-5 fw-lighter titulo">:(<br>Opps! Aún no has agregado películas a tu lista
+        </h1>
+        <a [routerLink]="['/inicio']"><button class="btn btn-lg themeBoton w-25 d-block mx-auto" type="button">Empezar a
+                buscar !</button></a>
+    </ng-template>
+</div>

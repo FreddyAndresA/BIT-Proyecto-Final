@@ -1,0 +1,20 @@
+{
+  "name": "backend_taller_final",
+  "version": "1.0.0",
+  "description": "Backend para MovieHome",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ."
+  },
+  "author": "Freddy Andres Angel Nova",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.0"
+  }
+}
